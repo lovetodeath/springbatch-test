@@ -50,6 +50,7 @@ public class InactiveUserJobConfig {
 //        }
     }
 
-    private ItemWriter<? super User> inactiveUserWriter() {
+    private ItemWriter<User> inactiveUserWriter() {
+        return ((List<? extends User> users) -> userRepository.saveAll(users));
     }
 }
