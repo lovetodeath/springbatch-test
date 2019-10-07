@@ -1,0 +1,8 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /console
+logging:
+#  file: d:/mylog.log
+  path: mylog

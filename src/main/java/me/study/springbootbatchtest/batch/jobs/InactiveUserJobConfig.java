@@ -1,6 +1,7 @@
 package me.study.springbootbatchtest.batch.jobs;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.study.springbootbatchtest.batch.domain.User;
 import me.study.springbootbatchtest.batch.domain.enums.UserStatus;
 import me.study.springbootbatchtest.batch.jobs.readers.QueueItemReader;
@@ -21,11 +22,13 @@ import java.util.function.Function;
 
 @AllArgsConstructor
 @Configuration
+@Slf4j
 public class InactiveUserJobConfig {
     private UserRepository userRepository;
 
     @Bean
     public Job inactiveUserJOb(JobBuilderFactory jobBuilderFactory, Step inactiveJobStep) {
+        log.info("InactiveUserJobConfig.inactiveUserJOb log");
         return jobBuilderFactory.get("inaciveUserJob")
                 .preventRestart()
                 .start(inactiveJobStep)
@@ -45,7 +48,7 @@ public class InactiveUserJobConfig {
     @Bean
     @StepScope // 각 Step의 실행마다 새로 빈을 만들기 때문에 지연 생성이 가능
     public QueueItemReader<User> inactiveUserReader() {
-        List<User> oldUsers = userRepository.findByUpdatedDateBeforeAndStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.ACTIVE);
+        List<User> oldUsers = userRepository.findByUpdateDateBeforeAndUserStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.ACTIVE);
         return new QueueItemReader<>(oldUsers);
     }
 
