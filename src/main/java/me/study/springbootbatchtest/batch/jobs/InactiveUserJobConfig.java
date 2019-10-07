@@ -5,7 +5,9 @@ import me.study.springbootbatchtest.batch.domain.User;
 import me.study.springbootbatchtest.batch.domain.enums.UserStatus;
 import me.study.springbootbatchtest.batch.jobs.readers.QueueItemReader;
 import me.study.springbootbatchtest.batch.repository.UserRepository;
+import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
@@ -21,6 +23,14 @@ import java.util.function.Function;
 @Configuration
 public class InactiveUserJobConfig {
     private UserRepository userRepository;
+
+    @Bean
+    public Job inactiveUserJOb(JobBuilderFactory jobBuilderFactory, Step inactiveJobStep) {
+        return jobBuilderFactory.get("inaciveUserJob")
+                .preventRestart()
+                .start(inactiveJobStep)
+                .build();
+    }
 
     @Bean
     public Step inactiveJobStep(StepBuilderFactory stepBuilderFactory) {

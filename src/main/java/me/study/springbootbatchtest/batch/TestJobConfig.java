@@ -5,8 +5,8 @@ import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@EnableBatchProcessing
-@Configuration
+//@EnableBatchProcessing
+//@Configuration
 public class TestJobConfig {
 
     @Bean
