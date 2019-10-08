@@ -49,6 +49,7 @@ public class InactiveUserJobConfig {
     @StepScope // 각 Step의 실행마다 새로 빈을 만들기 때문에 지연 생성이 가능
     public QueueItemReader<User> inactiveUserReader() {
         List<User> oldUsers = userRepository.findByUpdateDateBeforeAndUserStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.ACTIVE);
+        log.info("oldUsers.size() ->" + oldUsers.size());
         return new QueueItemReader<>(oldUsers);
     }
 

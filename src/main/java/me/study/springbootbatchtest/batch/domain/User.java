@@ -11,8 +11,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Table(name = "USER")
 @Entity
-@Table
 @Getter
 @EqualsAndHashCode(of = {"idx", "email"})
 @NoArgsConstructor

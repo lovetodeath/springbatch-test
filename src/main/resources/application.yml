@@ -1,8 +1,26 @@
 spring:
   h2:
     console:
-      enabled: true
-      path: /console
+      enabled: true # console 사용
+#      path: /console # default는 /h2-console
+#  jpa:
+#    show-sql: true # 로그에 쿼리 출력
+#    hibernate:
+#      ddl-auto: create-drop # @Entity 명시한 클래스 정보로 ddl문 수행. inmemory 사용시 기본값
+#    database-platform: H2
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    platform: H2
+##    url: jdbc:h2:tcp://localhost:9092/mem:management_db_9092
+#    url: jdbc:h2:~/
+#    username: sa
+#    password: sa
+
+
+
+
 logging:
-#  file: d:/mylog.log
-  path: mylog
+  file: myLog.log
+
+
+
