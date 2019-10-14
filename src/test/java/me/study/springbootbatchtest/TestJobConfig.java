@@ -1,12 +1,12 @@
-package me.study.springbootbatchtest.batch;
+package me.study.springbootbatchtest;
 
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//@EnableBatchProcessing
-//@Configuration
+@EnableBatchProcessing
+@Configuration
 public class TestJobConfig {
 
     @Bean

@@ -1,23 +1,28 @@
 spring:
+  datasource:
+#    initialization-mode: never
+    driver-class-name: org.h2.Driver
+#    platform: H2
+#    url: jdbc:h2:D:/Project/spring-boot-batch-test/test;AUTO_SERVER=TRUE
+#    url: jdbc:h2:~/test # embedded - local file
+#    url: jdbc:h2:mem:testdb # embedded - in-memory DB
+#    url: jdbc:h2:tcp://localhost:9092/mem:testdb # server - in-memory DB (server default)
+#    url: jdbc:h2:tcp://localhost:9092/mem:management_db_9099 # sever - in-memory DB (tomcat default)
+    url: jdbc:h2:tcp://localhost:9092/~/test # server - local file
+    username: sa
+    password: test
+    continue-on-error: true
   h2:
     console:
       enabled: true # console 사용
-#      path: /console # default는 /h2-console
-#  jpa:
-#    show-sql: true # 로그에 쿼리 출력
+      path: /console # default는 /h2-console
+  jpa:
+    show-sql: true # 로그에 쿼리 출력
 #    hibernate:
 #      ddl-auto: create-drop # @Entity 명시한 클래스 정보로 ddl문 수행. inmemory 사용시 기본값
-#    database-platform: H2
-#  datasource:
-#    driver-class-name: org.h2.Driver
-#    platform: H2
-##    url: jdbc:h2:tcp://localhost:9092/mem:management_db_9092
-#    url: jdbc:h2:~/
-#    username: sa
-#    password: sa
-
-
-
+  batch:
+    job:
+      enabled: false # test수행시에는 false로 변경하지 않으면 부트 기동시 1회 먼저 수행되고, test로 다시한번 수행됨.
 
 logging:
   file: myLog.log
